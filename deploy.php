@@ -24,6 +24,9 @@ task('assert:build', function () {
     run('cd {{release_or_current_path}} && {{nvm}} && npm install && npm run build');
 });
 
+desc('Generate route js');
+task('artisan:ziggy', artisan('ziggy:generate'));
+
 // Hooks
 fail('deploy:prod', 'deploy:failed');
 after('deploy:failed', 'deploy:unlock');
@@ -35,6 +38,7 @@ desc('Deploys online project');
 task('deploy:prod', [
     'deploy:prepare',
     'deploy:vendors',
+    'artisan:ziggy',
     'assert:build',
     'artisan:storage:link',
     'artisan:config:cache',
