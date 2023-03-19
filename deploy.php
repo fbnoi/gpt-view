@@ -19,18 +19,13 @@ host('101.43.90.39')
 
 // tasks
 desc('Install node modules');
-task('npm:install', function () {
-    run('cd {{release_or_current_path}} & npm install');
-});
-
-desc('Build assets');
-task('npm:build', function () {
-    run('cd {{release_or_current_path}} & npm build');
+set('nvm', 'source ~/.nvm/nvm.sh');
+task('assert:build', function () {
+    run('cd {{release_or_current_path}} && {{nvm}} && npm install && npm run build');
 });
 
 // Hooks
 fail('deploy:prod', 'deploy:failed');
-
 after('deploy:failed', 'deploy:unlock');
 
 /**
@@ -40,13 +35,12 @@ desc('Deploys online project');
 task('deploy:prod', [
     'deploy:prepare',
     'deploy:vendors',
+    'assert:build',
     'artisan:storage:link',
     'artisan:config:cache',
     'artisan:route:cache',
     'artisan:view:cache',
     'artisan:event:cache',
     'artisan:migrate',
-    'npm:install',
-    'npm:build',
     'deploy:publish',
 ]);
