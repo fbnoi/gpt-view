@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f8b64bb58b0fd961a6ef58ef30acb4f",
+    "content-hash": "618a584499bd3618bff9ac06b038adec",
     "packages": [
         {
             "name": "brick/math",
@@ -4146,6 +4146,32 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "deployer/deployer",
+            "version": "v7.2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/deployer/deployer/v7.2.1/deployer-deployer-v7.2.1.zip",
+                "reference": "61314b16a776da3ba332ee0390e999a361431e52",
+                "shasum": ""
+            },
+            "bin": [
+                "dep"
+            ],
+            "type": "library",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "Deployment Tool",
+            "homepage": "https://deployer.org",
+            "time": "2023-03-01T20:16:58+00:00"
+        },
         {
             "name": "fakerphp/faker",
             "version": "v1.21.0",
