@@ -40,13 +40,13 @@ desc('Deploys online project');
 task('deploy:prod', [
     'deploy:prepare',
     'deploy:vendors',
-    'npm:install',
-    'npm:build',
     'artisan:storage:link',
     'artisan:config:cache',
     'artisan:route:cache',
     'artisan:view:cache',
     'artisan:event:cache',
     'artisan:migrate',
+    'npm:install',
+    'npm:build',
     'deploy:publish',
 ]);
