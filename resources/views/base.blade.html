@@ -2,20 +2,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <title>Messenger - 2.2.0</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .avatar {
-            height: 44px;
-            width: 44px;
-        }
-        .avatar svg {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    @section('style')
+        @vite('resources/css/app.css')
+    @show
+    @section('script')
+        @vite('resources/js/app.js')
+    @show
 </head>
 
 <body>

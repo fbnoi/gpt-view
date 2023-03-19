@@ -1,10 +1,23 @@
-<div class="container h-100">
+@extends('base')
+
+@section('script')
+@parent
+<script>const ident = "slug";</script>
+@vite('resources/js/chat.js')
+@endsection
+
+@section('sidebar')
+@include('chats.sidebar')
+@endsection
+
+@section('main')
+<div class="container h-100" id="chat-ui">
     <div class="d-flex flex-column h-100 position-relative">
         <!-- Chat: Content -->
         <div class="chat-body hide-scrollbar flex-1 h-100">
             <div class="chat-body-inner" style="padding-bottom: 87px">
-                <div class="pt-3 pt-lg-5" id="message-list">
-                    <div class="message">
+                <div class="pt-3 pt-lg-5" id="message-list" v-cloak>
+                    <div class="message" v-for="item in history">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
                             class="avatar avatar-responsive">
                             <svg t="1679135233223" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -17,17 +30,12 @@
                         </a>
                         <div class="message-inner">
                             <div class="message-time">
-                                <span class="fxs text-muted">08:45 PM</span>
+                                <span class="fxs text-muted">@{{ item.time }}</span>
                             </div>
                             <div class="message-body">
                                 <div class="message-content">
                                     <div class="message-text">
-                                        <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                    </div>
-                                </div>
-                                <div class="message-content">
-                                    <div class="message-text">
-                                        <p>Send me the files please.</p>
+                                        @{{ item.content }}
                                     </div>
                                 </div>
                             </div>
@@ -75,54 +83,4 @@
         <!-- Chat: Footer -->
     </div>
 </div>
-
-<div class="hidden" id="tpl-message">
-    <div class="message">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
-            class="avatar avatar-responsive">
-            <svg t="1679135233223" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="3056"
-                xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
-                <path
-                    d="M510.72 64.64c247.424 0 448 200.576 448 448s-200.576 448-448 448-448-200.576-448-448 200.576-448 448-448zM637.76 544H384a128 128 0 0 0-128 130.24l0.032 29.792L256 704v87.68a379.008 379.008 0 0 0 448 47.392v2.528a406.4 406.4 0 0 0 64-41.6l-0.032-8.256 0.032-0.032v-118.4A128 128 0 0 0 637.76 544zM512 232.32a128 128 0 1 0 0 256 128 128 0 0 0 0-256z"
-                    fill="#8a8a8a" p-id="3057"></path>
-            </svg>
-        </a>
-        <div class="message-inner">
-            <div class="message-body">
-                <div class="message-content">
-                    <div class="message-text">
-                    </div>
-                </div>
-            </div>
-            <div class="message-time">
-                <span class="fxs text-muted time"></span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="hidden" id="tpl-message-out">
-    <div class="message message-out">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile"
-            class="avatar avatar-responsive">
-            <svg t="1679135233223" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="3056"
-                xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
-                <path
-                    d="M510.72 64.64c247.424 0 448 200.576 448 448s-200.576 448-448 448-448-200.576-448-448 200.576-448 448-448zM637.76 544H384a128 128 0 0 0-128 130.24l0.032 29.792L256 704v87.68a379.008 379.008 0 0 0 448 47.392v2.528a406.4 406.4 0 0 0 64-41.6l-0.032-8.256 0.032-0.032v-118.4A128 128 0 0 0 637.76 544zM512 232.32a128 128 0 1 0 0 256 128 128 0 0 0 0-256z"
-                    fill="#8a8a8a" p-id="3057"></path>
-            </svg>
-        </a>
-        <div class="message-inner">
-            <div class="message-body">
-                <div class="message-content">
-                    <div class="message-text">
-                    </div>
-                </div>
-            </div>
-            <div class="message-time">
-                <span class="fxs text-muted time"></span>
-            </div>
-        </div>
-    </div>
-</div>
+@endsection

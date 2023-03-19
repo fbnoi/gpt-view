@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Web\SessionController;
+use App\Http\Controllers\Web\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/session/{ident}', [ChatController::class, 'ui']);
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::controller(SessionController::class)
+    ->prefix('session')
+    ->name('session.')
+    ->group(function () {
+        Route::get('/{id}', 'ui')->name('ui');
+    });

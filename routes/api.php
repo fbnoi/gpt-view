@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\Api\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/session/{ident}', [ChatController::class, 'chat']);
+Route::name('api.')->group(function () {
+    Route::controller(SessionController::class)
+        ->prefix('session')
+        ->name('session.')
+        ->group(function () {
+            Route::get('/history/{id}', 'history')->name('history');
+            Route::post('/send/{id}', 'send')->name('send');
+        });
+});
